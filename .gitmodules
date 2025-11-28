@@ -5,8 +5,8 @@
 [submodule "_lib/ubiquitous_bash"]
 	path = _lib/ubiquitous_bash
 	#url = git@github.com:mirage335-colossus/ubiquitous_bash.git
-	url = git@github.com:quidscio/ubq-cygwin.git
+	url = git@github.com:quidscio/ubq_cygwin.git
 [submodule "_lib/coreoracle-msw/_lib/ubiquitous_bash"]
 	path = _lib/coreoracle-msw/_lib/ubiquitous_bash
 	#url = git@github.com:mirage335-colossus/ubiquitous_bash.git
-	url = git@github.com:quidscio/ubq-cygwin.git
+	url = git@github.com:quidscio/ubq_cygwin.git
