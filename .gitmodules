@@ -1,9 +1,12 @@
+# 2025-11-28 rmh - updated ubiquitous_bash submodule URL to point to quidscio repo for temporary maintenance
 [submodule "vendor/t16fcs"]
 	path = support/t16fcs
 	url = git@github.com:mirage335/t16fcs.git
 [submodule "_lib/ubiquitous_bash"]
 	path = _lib/ubiquitous_bash
-	url = git@github.com:mirage335-colossus/ubiquitous_bash.git
+	#url = git@github.com:mirage335-colossus/ubiquitous_bash.git
+	url = git@github.com:quidscio/ubq-cygwin.git
 [submodule "_lib/coreoracle-msw/_lib/ubiquitous_bash"]
 	path = _lib/coreoracle-msw/_lib/ubiquitous_bash
-	url = git@github.com:mirage335-colossus/ubiquitous_bash.git
+	#url = git@github.com:mirage335-colossus/ubiquitous_bash.git
+	url = git@github.com:quidscio/ubq-cygwin.git
