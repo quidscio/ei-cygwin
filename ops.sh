@@ -173,8 +173,16 @@ _install_certs() {
             done < <(find "$cert_link_dir" -maxdepth 1 -name "$logged_hash.*" -print0 2> /dev/null)
         done < "$removed_hash_manifest"
     }
+    if [[ "$UB_MANUAL_CERTS" == "1" && "$ub_under_setupUbiquitous" == "true" ]]
+    then
+        _messagePlain_warn 'install_certs skipped (manual mode)'
+        [[ "$cert_log_enabled" == "true" ]] && _install_certs_log 'guard: UB_MANUAL_CERTS=1, skipping automated run'
+        return 0
+    fi
+
     _install_certs_init_logging
     _install_certs_log_identity
+    _install_certs_log 'guard check passed: proceeding with install_certs'
 
     _if_cygwin && _install_certs_remove_known_offenders
     _if_cygwin && _install_certs_remove_existing_links
