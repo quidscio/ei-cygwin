@@ -25,9 +25,12 @@
 
   StrCpy $R0 "$0-$1-$2 $3:$4:$5"
 
-  FileOpen  $9 "C:\core\logs\extIface_installer.log" a
-  FileWrite $9 "$R0 | ${TEXT}$\r$\n"
-  FileClose $9
+  ClearErrors
+  FileOpen $9 "C:\core\logs\extIface_installer.log" a
+  IfErrors +3
+    FileSeek $9 0 END
+    FileWrite $9 "$R0 | ${TEXT}$\r$\n"
+    FileClose $9
 !macroend
 
 ; Ask for elevated privileges to write c:\core 
