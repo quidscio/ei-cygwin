@@ -8,9 +8,9 @@
 ;===== Enable a disk log =====
 !macro CoreLog TEXT
   CreateDirectory "C:\core\logs"
-  ${GetTime} "" "L" $0 $1 $2 $3 $4 $5 $6
-  ; $0=Year, $1=Month, $2=Day, $3=Hour, $4=Min, $5=Sec
-  StrCpy $R0 "$0-$1-$2 $3:$4:$5"
+  System::Call 'kernel32::GetLocalTime(*l .r1)'
+  ; r1 now points to SYSTEMTIME (year, month, etc.). Build a timestamp string.
+  StrCpy $R0 "$1-1 $1-2 $1-4 $1-5 $1-6"
   FileOpen $0 "C:\core\logs\extIface_installer.log" a
   FileWrite $0 "$R0 | ${TEXT}$\r$\n"
   FileClose $0
