@@ -246,6 +246,7 @@ _compile_bash_selfHost_prog() {
 
 _compile_bash_overrides_prog() {	
 	export includeScriptList
+    includeScriptList+=( "rOverrides.sh" )
 	true
 }
 
