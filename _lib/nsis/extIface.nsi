@@ -15,7 +15,6 @@
   FileWrite $0 "$R0 | ${TEXT}$\r$\n"
   FileClose $0
 !macroend
-!insertmacro CoreLog "== Starting extendedInterface installer "
 
 ; Ask for elevated privileges to write c:\core 
 RequestExecutionLevel admin
