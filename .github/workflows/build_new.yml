@@ -123,7 +123,8 @@ jobs:
         run: |
           rm -f ../extendedInterface-accessories/integrations/ubcp/package_ubcp-core.7z
           ./ubiquitous_bash.sh _build_extendedInterface-build
-            - name: 🔍 Tree snapshot - 05_build-build
+      
+      - name: 🔍 Tree snapshot - 05_build-build
         if: ${{ always() }}
         shell: bash
         run: |
@@ -147,6 +148,7 @@ jobs:
               printf '"%s",%s,%s,%s,%s\n' "$f" "$d" "$t" "$s" "$h"
             done
           } > "tree_snapshots/${label}.csv"
+
       - name: 📤 Upload Build Diagnostics Artifacts
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
