@@ -123,16 +123,30 @@ jobs:
         run: |
           rm -f ../extendedInterface-accessories/integrations/ubcp/package_ubcp-core.7z
           ./ubiquitous_bash.sh _build_extendedInterface-build
-      - name: 🔍 Tree snapshot - 05_build-build
+            - name: 🔍 Tree snapshot - 05_build-build
         if: ${{ always() }}
         shell: bash
         run: |
           mkdir -p tree_snapshots
           label="05_build-build"
+
+          # Pretty tree view (same as before)
           find . -print | sed -e 's;[^/]*/; |____;g;s;____|; |;g' \
             > "tree_snapshots/${label}.log"
-          find . -printf '"%p",%TY-%Tm-%Td,%TH:%TM,%s\n' \
-            > "tree_snapshots/${label}.csv"
+
+          # CSV with path, date, time, size, sha256
+          # Only files, not directories
+          {
+            # optional header, comment out if you do not want it
+            echo '"path","date","time","size","sha256"'
+            find . -type f -print0 | while IFS= read -r -d '' f; do
+              d=$(stat -c '%y' "$f" | cut -d' ' -f1)
+              t=$(stat -c '%y' "$f" | cut -d' ' -f2 | cut -d'.' -f1)
+              s=$(stat -c '%s' "$f")
+              h=$(sha256sum "$f" | awk '{print $1}')
+              printf '"%s",%s,%s,%s,%s\n' "$f" "$d" "$t" "$s" "$h"
+            done
+          } > "tree_snapshots/${label}.csv"
       - name: 📤 Upload Build Diagnostics Artifacts
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
